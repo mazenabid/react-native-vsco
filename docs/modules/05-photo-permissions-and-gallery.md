@@ -35,7 +35,7 @@ Cross the boundary from a self-contained interface into native device data witho
 - [x] A native iOS simulator renders real library photos without Metro errors.
 - [x] A production web export passes.
 - [ ] Permission transitions and pagination are reviewed on a physical device.
-- [ ] The draft pull request records implementation and validation evidence.
+- [x] The draft pull request records implementation and validation evidence.
 
 ## What was built
 
@@ -107,6 +107,7 @@ Initial loading, pull-to-refresh, pagination, permission actions, errors with no
 | iOS simulator | Passed; six real library photos rendered in the three-column grid |
 | Metro runtime | No errors during the simulator smoke test |
 | Production web bundle | Passed; 14 static routes exported |
+| Pull request | [Draft PR #8](https://github.com/mazenabid/react-native-vsco/pull/8) |
 | Physical-device permission review | Pending |
 
 ## Demo
