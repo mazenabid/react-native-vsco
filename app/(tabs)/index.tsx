@@ -1,98 +1,287 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { ProjectTile } from '@/components/studio/project-tile';
+import { StudioFilterTabs, type StudioFilter } from '@/components/studio/studio-filter-tabs';
+import { STUDIO_PROJECTS } from '@/constants/studio-projects';
 
-export default function HomeScreen() {
+const PAGE_PADDING = 20;
+const GRID_GAP = 12;
+
+export default function StudioScreen() {
+  const { width } = useWindowDimensions();
+  const [filter, setFilter] = useState<StudioFilter>('all');
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
+
+  const visibleProjects =
+    filter === 'edited' ? STUDIO_PROJECTS.filter((project) => project.isEdited) : STUDIO_PROJECTS;
+
+  const selectedProject = STUDIO_PROJECTS.find((project) => project.id === selectedProjectId);
+  const tileSize = Math.min(260, (width - PAGE_PADDING * 2 - GRID_GAP) / 2);
+  const editedCount = STUDIO_PROJECTS.filter((project) => project.isEdited).length;
+
+  function selectFilter(nextFilter: StudioFilter) {
+    setFilter(nextFilter);
+    setSelectedProjectId(null);
+  }
+
+  function selectProject(projectId: string) {
+    setSelectedProjectId((currentId) => (currentId === projectId ? null : projectId));
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        contentInsetAdjustmentBehavior="automatic">
+        <View style={styles.topLine}>
+          <Text style={styles.wordmark}>STUDIO</Text>
+          <View style={styles.buildBadge}>
+            <View style={styles.liveDot} />
+            <Text style={styles.buildBadgeText}>BUILD 002</Text>
+          </View>
+        </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <View style={styles.hero}>
+          <Text style={styles.eyebrow}>YOUR PRIVATE WORKSPACE</Text>
+          <Text style={styles.headline}>Make something worth keeping.</Text>
+          <Text style={styles.intro}>
+            A quiet home for the photographs, experiments, and edits that are still becoming.
+          </Text>
+        </View>
+
+        <View style={styles.summaryRow}>
+          <View>
+            <Text style={styles.summaryValue}>{String(STUDIO_PROJECTS.length).padStart(2, '0')}</Text>
+            <Text style={styles.summaryLabel}>STUDIES</Text>
+          </View>
+          <View style={styles.summaryDivider} />
+          <View>
+            <Text style={styles.summaryValue}>{String(editedCount).padStart(2, '0')}</Text>
+            <Text style={styles.summaryLabel}>EDITED</Text>
+          </View>
+        </View>
+
+        <StudioFilterTabs value={filter} onChange={selectFilter} />
+
+        <View style={styles.sectionHeading}>
+          <View>
+            <Text style={styles.sectionTitle}>Visual studies</Text>
+            <Text style={styles.sectionCaption}>Demo projects · Device photos arrive in Module 05</Text>
+          </View>
+          <Text style={styles.resultCount}>{visibleProjects.length}</Text>
+        </View>
+
+        <View style={styles.grid}>
+          {visibleProjects.map((project) => (
+            <ProjectTile
+              key={project.id}
+              project={project}
+              size={tileSize}
+              isSelected={project.id === selectedProjectId}
+              onPress={selectProject}
+            />
+          ))}
+        </View>
+
+        <View style={styles.selectionPanel}>
+          {selectedProject ? (
+            <>
+              <View style={styles.selectionCopy}>
+                <Text style={styles.selectionEyebrow}>SELECTED STUDY</Text>
+                <Text style={styles.selectionTitle}>{selectedProject.title}</Text>
+              </View>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel="Clear selected study"
+                onPress={() => setSelectedProjectId(null)}
+                style={({ pressed }) => [styles.clearButton, pressed && styles.pressed]}>
+                <Text style={styles.clearButtonText}>CLEAR</Text>
+              </Pressable>
+            </>
+          ) : (
+            <Text style={styles.selectionHint}>Tap a study to select it. Tap it again to clear.</Text>
+          )}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F3F1EC',
+  },
+  content: {
+    width: '100%',
+    maxWidth: 720,
+    alignSelf: 'center',
+    paddingHorizontal: PAGE_PADDING,
+    paddingBottom: 48,
+  },
+  topLine: {
+    minHeight: 64,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#C9C5BC',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  wordmark: {
+    color: '#171714',
+    fontSize: 13,
+    fontWeight: '800',
+    letterSpacing: 3.2,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  buildBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+    paddingVertical: 7,
+    paddingHorizontal: 10,
+    borderRadius: 999,
+    backgroundColor: '#E6E2D8',
+  },
+  liveDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#D36B46',
+  },
+  buildBadgeText: {
+    color: '#5F5C54',
+    fontSize: 9,
+    fontWeight: '700',
+    letterSpacing: 1.2,
+  },
+  hero: {
+    paddingTop: 42,
+    paddingBottom: 34,
+  },
+  eyebrow: {
+    marginBottom: 12,
+    color: '#7A766D',
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 1.8,
+  },
+  headline: {
+    maxWidth: 340,
+    color: '#171714',
+    fontSize: 42,
+    fontWeight: '500',
+    letterSpacing: -1.8,
+    lineHeight: 44,
+  },
+  intro: {
+    maxWidth: 355,
+    marginTop: 18,
+    color: '#68645C',
+    fontSize: 15,
+    lineHeight: 23,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 18,
+    paddingVertical: 18,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: '#C9C5BC',
+  },
+  summaryValue: {
+    color: '#171714',
+    fontSize: 18,
+    fontWeight: '600',
+    fontVariant: ['tabular-nums'],
+  },
+  summaryLabel: {
+    marginTop: 3,
+    color: '#8C887E',
+    fontSize: 8,
+    fontWeight: '700',
+    letterSpacing: 1.4,
+  },
+  summaryDivider: {
+    width: StyleSheet.hairlineWidth,
+    height: 34,
+    backgroundColor: '#C9C5BC',
+  },
+  sectionHeading: {
+    marginTop: 34,
+    marginBottom: 16,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+  sectionTitle: {
+    color: '#171714',
+    fontSize: 18,
+    fontWeight: '600',
+    letterSpacing: -0.3,
+  },
+  sectionCaption: {
+    marginTop: 5,
+    color: '#8C887E',
+    fontSize: 10,
+  },
+  resultCount: {
+    color: '#8C887E',
+    fontSize: 11,
+    fontWeight: '700',
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: GRID_GAP,
+  },
+  selectionPanel: {
+    minHeight: 74,
+    marginTop: 28,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#C9C5BC',
+    borderRadius: 2,
+    backgroundColor: '#ECE9E1',
+  },
+  selectionCopy: {
+    gap: 4,
+  },
+  selectionEyebrow: {
+    color: '#8C887E',
+    fontSize: 8,
+    fontWeight: '700',
+    letterSpacing: 1.2,
+  },
+  selectionTitle: {
+    color: '#171714',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  selectionHint: {
+    color: '#77736A',
+    fontSize: 12,
+  },
+  clearButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 2,
+    backgroundColor: '#171714',
+  },
+  clearButtonText: {
+    color: '#F3F1EC',
+    fontSize: 9,
+    fontWeight: '800',
+    letterSpacing: 1.2,
+  },
+  pressed: {
+    opacity: 0.68,
   },
 });

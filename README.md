@@ -11,9 +11,9 @@ A learning-first, VSCO-inspired photo editor and creative community built from t
 
 | Current module | Status | Next outcome |
 | --- | --- | --- |
-| 01 — Tooling and setup | Complete | Replace the Expo starter with our first custom Studio screen |
+| 02 — React Native fundamentals | In progress | Review and release the first original Studio screen |
 
-The app currently contains the verified Expo starter. Product UI begins in Module 02.
+The Expo demo has been replaced with a typed, state-driven Studio experience on the Module 02 branch.
 
 ## Why this project exists
 
@@ -37,6 +37,7 @@ The finished app matters, but so does the path to it. Each curriculum module end
 ## Learning in public
 
 - [View the complete 14-module curriculum](./CURRICULUM.md)
+- [Follow Module 02: React Native fundamentals](./docs/modules/02-react-native-fundamentals.md)
 - [Read Module 01: Tooling and setup](./docs/modules/01-tooling-and-setup.md)
 - [Review our architecture decisions](./docs/architecture/decisions/0001-expo-typescript-router.md)
 - [Use the module journal template](./docs/modules/module-template.md)
