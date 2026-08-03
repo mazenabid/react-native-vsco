@@ -1,6 +1,6 @@
 # Module 03 — Design System
 
-**Status:** In progress
+**Status:** Complete
 
 **Product outcome:** The Studio's visual language is defined once and consumed through typed tokens and focused UI primitives.
 
@@ -25,11 +25,11 @@ Turn the successful Studio direction into a small system that keeps future scree
 - [x] `AppText` and `IconButton` replace repeated text and pressable behavior.
 - [x] Existing photo semantics remain accurate and non-interactive.
 - [x] Studio layout and grid-density behavior are visually verified as unchanged.
-- [ ] The screen is verified on the primary physical-device target.
+- [x] The screen is verified on the primary physical-device target.
 - [x] `npm run lint` passes without warnings.
 - [x] `npm run typecheck` passes.
 - [x] A production web export passes.
-- [ ] The pull request records visual and architectural evidence.
+- [x] The pull request records visual and architectural evidence.
 
 ## What was built
 
@@ -84,7 +84,7 @@ Moving every measurement into a generic token file would technically reduce lite
 | Raw-color audit | Passed; runtime colors exist only in `theme/tokens.ts` |
 | Production web bundle | Passed; four static routes exported |
 | Browser visual review | Passed at 390 × 844; navigation remained 96 points tall |
-| Physical-device review | Pending |
+| Physical-device review | Passed by user on the primary device |
 
 ## Demo
 

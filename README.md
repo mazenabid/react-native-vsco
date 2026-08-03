@@ -11,9 +11,9 @@ A learning-first, VSCO-inspired photo editor and creative community built from t
 
 | Current module | Status | Next outcome |
 | --- | --- | --- |
-| 03 — Design system | In progress | A cohesive token and component system shared by the app shell |
+| 03 — Design system | Complete | Turn the visual-only bottom bar into real route-backed navigation |
 
-The photography-first Studio now provides the real interface from which Module 03 is extracting reusable tokens, type roles, controls, and navigation theming.
+The photography-first Studio now runs on shared tokens, type roles, controls, and navigation theming. Module 04 will use that system to build the real app shell.
 
 ## Why this project exists
 
