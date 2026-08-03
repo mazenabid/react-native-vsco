@@ -55,20 +55,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1.5,
-    borderColor: '#111111',
+    borderColor: '#FFFFFF',
     borderRadius: 22,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#000000',
   },
   selectedFilter: {
-    backgroundColor: '#111111',
+    backgroundColor: '#FFFFFF',
   },
   label: {
-    color: '#111111',
+    color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '500',
   },
   selectedLabel: {
-    color: '#FFFFFF',
+    color: '#000000',
   },
   pressed: {
     opacity: 0.5,

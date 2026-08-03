@@ -36,7 +36,7 @@ Replace Expo's generated example with a small but intentional product surface wh
 
 ### Studio screen
 
-The revised screen follows the functional hierarchy of a real photo workspace: a compact Studio title, outlined media filters, a dense edge-to-edge photo grid, selection feedback, and quiet bottom navigation. The interface intentionally yields attention to photography instead of decorating the workspace with marketing copy.
+The revised screen follows the functional hierarchy of the current mobile reference: black interface chrome, a compact Studio title, outlined media filters, a dense edge-to-edge photo grid, selection feedback, and a tall six-destination bottom navigation. The interface intentionally yields attention to photography instead of decorating the workspace with marketing copy.
 
 ### Controlled filter component
 
@@ -60,7 +60,15 @@ Photo permission and Media Library behavior deserve a focused lesson in Module 0
 
 The first direction used a large editorial headline, warm decorative surfaces, counters, captions, and abstract generated-looking cards. Although internally consistent, it competed with the media and read like a generic concept mockup.
 
-Current VSCO references show a much stricter hierarchy: white and black interface chrome, large but direct screen naming, compact outlined filters, dense photography, and contextual actions only after selection. The revision adopts those principles without copying VSCO branding or proprietary icons.
+Current VSCO references show a much stricter hierarchy: black interface chrome, direct screen naming, compact controls, dense photography, and contextual actions only after selection. The revision adopts those principles without copying VSCO branding or proprietary icons.
+
+### Make the bottom bar own the bottom safe area
+
+The initial navigation component ended above the iPhone home-indicator inset because the screen-level `SafeAreaView` owned the bottom edge. That made the painted bar only 76 points tall and visually detached the safe-area region below it.
+
+The current reference devotes roughly 100 logical points to the complete navigation platform. `StudioBottomBar` now reads the bottom inset itself, paints through it, and combines it with the icon-and-label area. This produces a bar around 102 points tall on a modern iPhone and preserves a useful fallback on devices without an inset.
+
+**Lesson:** Safe areas are not always empty margins around the whole screen. Fixed chrome should often own and paint through its adjacent inset so it feels anchored to the device edge.
 
 ### Keep visual values local until Module 03
 
@@ -91,8 +99,9 @@ The initial filter options used `ReadonlyArray<T>`. ESLint requested the equival
 | Lint | Passed without warnings |
 | TypeScript | Passed |
 | Production web bundle | Passed; four static routes exported |
-| Browser visual review | Passed at a 390 × 844 mobile viewport |
+| Browser visual review | Passed at a 390 × 844 mobile viewport; bottom bar measured 96 points tall |
 | Interaction review | Filters, 2/3-column layout, selection, and deselection passed |
+| Supplied current-app reference review | Dark chrome, six navigation destinations, and bottom-bar proportions captured |
 | Physical-device review | Pending |
 
 ## Demo

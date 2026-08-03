@@ -41,7 +41,7 @@ export default function StudioScreen() {
   const hasSelection = selectedProjectId !== null;
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={[styles.appFrame, { maxWidth: MAX_CONTENT_WIDTH }]}>
         {hasSelection ? (
           <View style={styles.selectionHeader}>
@@ -55,16 +55,25 @@ export default function StudioScreen() {
           </View>
         ) : (
           <View style={styles.header}>
-            <View style={styles.titleRow}>
-              <Text style={styles.title}>Studio</Text>
+            <View style={styles.utilityRow}>
+              <View style={styles.utilityButton} accessibilityElementsHidden>
+                <Feather name="menu" size={36} color="#FFFFFF" />
+              </View>
+
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel={`Show ${columnCount === 3 ? 'large' : 'small'} grid`}
                 onPress={toggleGridSize}
-                hitSlop={12}
-                style={({ pressed }) => [styles.gridButton, pressed && styles.pressed]}>
-                <Feather name="grid" size={25} color="#111111" />
+                hitSlop={10}
+                style={({ pressed }) => [styles.utilityButton, pressed && styles.pressed]}>
+                <View style={styles.viewControlIcon}>
+                  <View style={styles.viewControlDot} />
+                </View>
               </Pressable>
+            </View>
+
+            <View style={styles.titleRow}>
+              <Text style={styles.title}>Studio</Text>
             </View>
             <StudioFilterTabs value={filter} onChange={selectFilter} />
           </View>
@@ -97,35 +106,59 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#000000',
   },
   appFrame: {
     width: '100%',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#000000',
   },
   header: {
-    paddingTop: 20,
-    paddingBottom: 18,
+    paddingTop: 12,
+    paddingBottom: 16,
+  },
+  utilityRow: {
+    height: 48,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  utilityButton: {
+    width: 44,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  viewControlIcon: {
+    width: 24,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    borderRadius: 2,
+  },
+  viewControlDot: {
+    width: 6,
+    height: 6,
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    borderRadius: 3,
   },
   titleRow: {
+    marginTop: 34,
     paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   title: {
-    color: '#111111',
-    fontSize: 42,
-    fontWeight: '600',
-    letterSpacing: -1.8,
-    lineHeight: 50,
-  },
-  gridButton: {
-    width: 44,
-    height: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
+    color: '#FFFFFF',
+    fontSize: 32,
+    fontWeight: '500',
+    letterSpacing: -0.9,
+    lineHeight: 40,
   },
   selectionHeader: {
     minHeight: 100,
@@ -135,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   selectionCount: {
-    color: '#111111',
+    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
   },
@@ -145,10 +178,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 24,
-    backgroundColor: '#111111',
+    backgroundColor: '#FFFFFF',
   },
   deselectText: {
-    color: '#FFFFFF',
+    color: '#000000',
     fontSize: 15,
     fontWeight: '600',
   },

@@ -1,6 +1,7 @@
 import Feather from '@expo/vector-icons/Feather';
 import type { ComponentProps } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type FeatherName = ComponentProps<typeof Feather>['name'];
 
@@ -18,8 +19,9 @@ const NAVIGATION_ITEMS: readonly BarItem[] = [
   { label: 'Feed', icon: 'home' },
   { label: 'Discover', icon: 'search' },
   { label: 'Studio', icon: 'grid', isActive: true },
+  { label: 'AI Lab', icon: 'star' },
   { label: 'Profile', icon: 'smile' },
-  { label: 'Spaces', icon: 'layers' },
+  { label: 'Spaces', icon: 'bar-chart-2' },
 ];
 
 const ACTION_ITEMS: readonly BarItem[] = [
@@ -30,16 +32,20 @@ const ACTION_ITEMS: readonly BarItem[] = [
 ];
 
 export function StudioBottomBar({ hasSelection }: StudioBottomBarProps) {
+  const insets = useSafeAreaInsets();
   const items = hasSelection ? ACTION_ITEMS : NAVIGATION_ITEMS;
+  const bottomPadding = Math.max(insets.bottom, 28);
 
   return (
-    <View accessibilityRole="toolbar" style={styles.bar}>
+    <View
+      accessibilityRole="toolbar"
+      style={[styles.bar, { minHeight: 68 + bottomPadding, paddingBottom: bottomPadding }]}>
       {items.map((item) => {
-        const color = item.isActive ? '#111111' : '#AAAAAA';
+        const color = item.isActive ? '#FFFFFF' : '#7C7C7C';
 
         return (
           <View key={item.label} style={styles.item}>
-            <Feather name={item.icon} size={24} color={color} />
+            <Feather name={item.icon} size={26} color={color} />
             <Text style={[styles.label, { color }]}>{item.label}</Text>
           </View>
         );
@@ -50,23 +56,21 @@ export function StudioBottomBar({ hasSelection }: StudioBottomBarProps) {
 
 const styles = StyleSheet.create({
   bar: {
-    minHeight: 76,
-    paddingTop: 10,
-    paddingHorizontal: 8,
+    paddingTop: 11,
+    paddingHorizontal: 4,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-around',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#DDDDDD',
-    backgroundColor: 'rgba(255, 255, 255, 0.96)',
+    backgroundColor: '#151515',
   },
   item: {
-    minWidth: 54,
+    flex: 1,
     alignItems: 'center',
-    gap: 5,
+    gap: 4,
   },
   label: {
-    fontSize: 10,
-    fontWeight: '500',
+    fontSize: 11,
+    fontWeight: '400',
+    lineHeight: 14,
   },
 });

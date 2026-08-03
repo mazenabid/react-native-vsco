@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
   tile: {
     position: 'relative',
     overflow: 'hidden',
-    backgroundColor: '#E8E8E8',
+    backgroundColor: '#1A1A1A',
   },
   selectedTile: {
     padding: 4,
     borderWidth: 3,
-    borderColor: '#111111',
-    backgroundColor: '#FFFFFF',
+    borderColor: '#FFFFFF',
+    backgroundColor: '#000000',
   },
   image: {
     width: '100%',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderWidth: 6,
-    borderColor: '#111111',
+    borderColor: '#000000',
     borderRadius: 13,
     backgroundColor: '#FFFFFF',
   },

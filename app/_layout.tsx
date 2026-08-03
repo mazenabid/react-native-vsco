@@ -1,17 +1,17 @@
-import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 const studioTheme = {
-  ...DefaultTheme,
+  ...DarkTheme,
   colors: {
-    ...DefaultTheme.colors,
-    background: '#FFFFFF',
-    card: '#FFFFFF',
-    text: '#111111',
-    border: '#DDDDDD',
-    primary: '#111111',
+    ...DarkTheme.colors,
+    background: '#000000',
+    card: '#151515',
+    text: '#FFFFFF',
+    border: '#292929',
+    primary: '#FFFFFF',
   },
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
     </ThemeProvider>
   );
 }
