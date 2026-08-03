@@ -5,10 +5,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type FeatherName = ComponentProps<typeof Feather>['name'];
 
-type StudioBottomBarProps = {
-  hasSelection: boolean;
-};
-
 type BarItem = {
   label: string;
   icon: FeatherName;
@@ -24,23 +20,15 @@ const NAVIGATION_ITEMS: readonly BarItem[] = [
   { label: 'Spaces', icon: 'bar-chart-2' },
 ];
 
-const ACTION_ITEMS: readonly BarItem[] = [
-  { label: 'Edit', icon: 'sliders', isActive: true },
-  { label: 'Collage', icon: 'copy', isActive: true },
-  { label: 'Share', icon: 'share', isActive: true },
-  { label: 'More', icon: 'more-horizontal', isActive: true },
-];
-
-export function StudioBottomBar({ hasSelection }: StudioBottomBarProps) {
+export function StudioBottomBar() {
   const insets = useSafeAreaInsets();
-  const items = hasSelection ? ACTION_ITEMS : NAVIGATION_ITEMS;
   const bottomPadding = Math.max(insets.bottom, 28);
 
   return (
     <View
       accessibilityRole="toolbar"
       style={[styles.bar, { minHeight: 68 + bottomPadding, paddingBottom: bottomPadding }]}>
-      {items.map((item) => {
+      {NAVIGATION_ITEMS.map((item) => {
         const color = item.isActive ? '#FFFFFF' : '#7C7C7C';
 
         return (
