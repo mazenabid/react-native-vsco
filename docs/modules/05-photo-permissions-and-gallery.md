@@ -1,6 +1,6 @@
 # Module 05 — Photo Permissions and Gallery
 
-**Status:** In progress
+**Status:** Complete
 
 **Product outcome:** Studio replaces remote demo studies with a permission-aware, paginated grid of photos from the user's device.
 
@@ -34,7 +34,7 @@ Cross the boundary from a self-contained interface into native device data witho
 - [x] The unsupported web state is visually verified at 390 × 844.
 - [x] A native iOS simulator renders real library photos without Metro errors.
 - [x] A production web export passes.
-- [ ] Permission transitions and pagination are reviewed on a physical device.
+- [x] Permission transitions and pagination are reviewed on a physical device.
 - [x] The draft pull request records implementation and validation evidence.
 
 ## What was built
@@ -108,7 +108,7 @@ Initial loading, pull-to-refresh, pagination, permission actions, errors with no
 | Metro runtime | No errors during the simulator smoke test |
 | Production web bundle | Passed; 14 static routes exported |
 | Pull request | [Draft PR #8](https://github.com/mazenabid/react-native-vsco/pull/8) |
-| Physical-device permission review | Pending |
+| Physical-device permission review | Passed by Mazen on August 3, 2026 |
 
 ## Demo
 
