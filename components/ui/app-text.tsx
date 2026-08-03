@@ -3,7 +3,7 @@ import { StyleSheet, Text, type TextProps } from 'react-native';
 import { colors, typography } from '@/theme/tokens';
 
 type AppTextVariant = keyof typeof typography;
-type AppTextTone = 'primary' | 'muted';
+type AppTextTone = 'primary' | 'muted' | 'inverse';
 
 type AppTextProps = TextProps & {
   variant: AppTextVariant;
@@ -22,5 +22,8 @@ const tones = StyleSheet.create({
   },
   muted: {
     color: colors.contentMuted,
+  },
+  inverse: {
+    color: colors.contentInverse,
   },
 });
