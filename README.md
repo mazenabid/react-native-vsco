@@ -11,9 +11,9 @@ A learning-first, VSCO-inspired photo editor and creative community built from t
 
 | Current module | Status | Next outcome |
 | --- | --- | --- |
-| 04 — Navigation and app shell | Complete | Request device photo permission and render the local camera roll |
+| 05 — Photo permissions and gallery | Complete | Establish domain, data, and shared-state boundaries for Studio |
 
-The bottom navigation is now a real Expo Router shell: each destination has its own route, while the custom bar derives its active state from the navigator. Module 05 will replace the remote studies with permission-aware photos from the device.
+Studio now reads real device photos through an intentional permission flow. Module 06 will separate native data from app-owned models and add shared selection state without pretending an editor already exists.
 
 ## Why this project exists
 
@@ -37,6 +37,7 @@ The finished app matters, but so does the path to it. Each curriculum module end
 ## Learning in public
 
 - [View the complete 14-module curriculum](./CURRICULUM.md)
+- [Follow Module 05: Photo permissions and gallery](./docs/modules/05-photo-permissions-and-gallery.md)
 - [Follow Module 04: Navigation and app shell](./docs/modules/04-navigation-and-app-shell.md)
 - [Follow Module 03: Design system](./docs/modules/03-design-system.md)
 - [Follow Module 02: React Native fundamentals](./docs/modules/02-react-native-fundamentals.md)

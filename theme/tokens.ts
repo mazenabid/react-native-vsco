@@ -7,6 +7,7 @@ export const colors = {
   borderSubtle: '#292929',
   contentPrimary: '#FFFFFF',
   contentMuted: '#7C7C7C',
+  contentInverse: '#000000',
 } as const;
 
 export const space = {
@@ -55,5 +56,27 @@ export const typography = {
     fontSize: 11,
     fontWeight: '400',
     lineHeight: 14,
+  },
+  sectionTitle: {
+    fontSize: 25,
+    fontWeight: '400',
+    letterSpacing: -0.4,
+    lineHeight: 32,
+  },
+  body: {
+    fontSize: 16,
+    fontWeight: '400',
+    lineHeight: 23,
+  },
+  buttonLabel: {
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 0.4,
+    lineHeight: 20,
+  },
+  caption: {
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 16,
   },
 } satisfies Record<string, TextStyle>;

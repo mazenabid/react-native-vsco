@@ -30,6 +30,17 @@
     "plugins": [
       "expo-router",
       [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to show your photos in Studio.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save edited photos to your library.",
+          "preventAutomaticLimitedAccessAlert": true,
+          "granularPermissions": [
+            "photo"
+          ]
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
