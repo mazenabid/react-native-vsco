@@ -1,6 +1,6 @@
 # Module 04 — Navigation and App Shell
 
-**Status:** In progress
+**Status:** Complete
 
 **Product outcome:** The six bottom destinations are real Expo Router routes controlled by a custom, safe-area-aware tab bar.
 
@@ -27,7 +27,7 @@ Replace the visual-only Studio navigation with an app shell whose URL, mounted s
 - [x] Each tab press renders the correct screen and active treatment.
 - [x] Studio's grid-density state survives switching away and back while mounted.
 - [x] Direct web routes render successfully.
-- [ ] The bar is visually verified at the primary mobile viewport and physical device. (Web viewport passed; physical device pending.)
+- [x] The bar is visually verified at the primary mobile viewport and physical device.
 - [x] `npm run lint` passes without warnings.
 - [x] `npm run typecheck` passes.
 - [x] A production web export passes.
@@ -82,7 +82,7 @@ A hand-built `activeTab` state could switch rendered components, but it would om
 | 390 × 844 web viewport | Passed |
 | Production web bundle | Passed: 14 static routes exported, including all six public destinations |
 | Pull request | [Draft PR #6](https://github.com/mazenabid/react-native-vsco/pull/6) |
-| Physical-device review | Pending |
+| Physical-device review | Passed by Mazen on August 3, 2026 |
 
 ## Demo
 

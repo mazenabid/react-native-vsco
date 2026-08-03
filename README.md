@@ -11,9 +11,9 @@ A learning-first, VSCO-inspired photo editor and creative community built from t
 
 | Current module | Status | Next outcome |
 | --- | --- | --- |
-| 04 — Navigation and app shell | In progress | Route-backed tabs with accurate active and safe-area behavior |
+| 04 — Navigation and app shell | Complete | Request device photo permission and render the local camera roll |
 
-The bottom navigation is becoming a real Expo Router shell: each destination has its own route, while the custom bar derives its active state from the navigator.
+The bottom navigation is now a real Expo Router shell: each destination has its own route, while the custom bar derives its active state from the navigator. Module 05 will replace the remote studies with permission-aware photos from the device.
 
 ## Why this project exists
 
