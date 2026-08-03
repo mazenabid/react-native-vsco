@@ -31,7 +31,7 @@ Replace the visual-only Studio navigation with an app shell whose URL, mounted s
 - [x] `npm run lint` passes without warnings.
 - [x] `npm run typecheck` passes.
 - [x] A production web export passes.
-- [ ] The draft pull request records route and interaction evidence.
+- [x] The draft pull request records route and interaction evidence.
 
 ## What was built
 
@@ -81,6 +81,7 @@ A hand-built `activeTab` state could switch rendered components, but it would om
 | Direct route review | Passed: `/ai-lab` loaded directly with AI Lab selected |
 | 390 × 844 web viewport | Passed |
 | Production web bundle | Passed: 14 static routes exported, including all six public destinations |
+| Pull request | [Draft PR #6](https://github.com/mazenabid/react-native-vsco/pull/6) |
 | Physical-device review | Pending |
 
 ## Demo
