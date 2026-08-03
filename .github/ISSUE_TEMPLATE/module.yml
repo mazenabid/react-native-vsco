@@ -1,0 +1,57 @@
+name: Curriculum module
+description: Plan a curriculum module with explicit learning and product outcomes.
+title: "[Module XX] "
+labels:
+  - module
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this issue to define what the module teaches and what it ships.
+
+  - type: input
+    id: module
+    attributes:
+      label: Module
+      description: Number and title of the curriculum module.
+      placeholder: "02 — React Native fundamentals"
+    validations:
+      required: true
+
+  - type: textarea
+    id: learning
+    attributes:
+      label: Learning outcomes
+      description: What should be understood or practiced by the end?
+      placeholder: |
+        - Components and JSX
+        - Props, state, and hooks
+    validations:
+      required: true
+
+  - type: textarea
+    id: product
+    attributes:
+      label: Product outcome
+      description: What visible or testable result will be shipped?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions required to call the module complete.
+      placeholder: |
+        - [ ] Requirement
+        - [ ] Quality checks pass
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Demo and validation plan
+      description: How will the result be demonstrated and verified?
+    validations:
+      required: true

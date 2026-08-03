@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Curriculum overview
+    url: https://github.com/mazenabid/react-native-vsco/blob/main/CURRICULUM.md
+    about: Review the planned learning path before proposing a new module.

@@ -1,50 +1,111 @@
-# Welcome to your Expo app 👋
+# React Native VSCO
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+[![Quality](https://github.com/mazenabid/react-native-vsco/actions/workflows/quality.yml/badge.svg)](https://github.com/mazenabid/react-native-vsco/actions/workflows/quality.yml)
 
-## Get started
+A learning-first, VSCO-inspired photo editor and creative community built from the ground up with React Native, Expo, and TypeScript.
 
-1. Install dependencies
+> [!NOTE]
+> This is an independent educational project. It is not affiliated with, endorsed by, or connected to VSCO.
 
-   ```bash
-   npm install
-   ```
+## Project status
 
-2. Start the app
+| Current module | Status | Next outcome |
+| --- | --- | --- |
+| 01 — Tooling and setup | Complete | Replace the Expo starter with our first custom Studio screen |
 
-   ```bash
-   npx expo start
-   ```
+The app currently contains the verified Expo starter. Product UI begins in Module 02.
 
-In the output, you'll find options to open the app in a
+## Why this project exists
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+This repository has two goals:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. Build a polished mobile photo-editing and creative-sharing product.
+2. Document the engineering journey clearly enough that another learner can follow the decisions, mistakes, and progress.
 
-## Get a fresh project
+The finished app matters, but so does the path to it. Each curriculum module ends with a tested deliverable, a learning journal, and a tagged GitHub release.
 
-When you're ready, run:
+## What we are building
+
+- A device photo library and responsive gallery
+- An immersive photo viewer with native gestures
+- Non-destructive photo adjustments and presets
+- Saved editing projects with export and sharing
+- Accounts, cloud storage, profiles, and publishing
+- A social feed and discovery experience
+- A production-quality release for iOS and Android
+
+## Learning in public
+
+- [View the complete 14-module curriculum](./CURRICULUM.md)
+- [Read Module 01: Tooling and setup](./docs/modules/01-tooling-and-setup.md)
+- [Review our architecture decisions](./docs/architecture/decisions/0001-expo-typescript-router.md)
+- [Use the module journal template](./docs/modules/module-template.md)
+
+Every completed module will link to its pull request, release, and visual demo from the curriculum.
+
+## Technical foundation
+
+| Technology | Purpose |
+| --- | --- |
+| React Native 0.81 | Cross-platform native application development |
+| Expo SDK 54 | Native tooling, development workflow, and platform APIs |
+| React 19 | Component and state model |
+| TypeScript 5.9 | Type safety and clearer application contracts |
+| Expo Router 6 | File-based navigation across mobile and web |
+| GitHub Actions | Automated lint and type-check quality gates |
+
+## Run it locally
+
+### Prerequisites
+
+- Node.js 24 LTS
+- npm 11+
+- Expo Go on a physical device, or an iOS/Android simulator
+
+### Start the app
 
 ```bash
-npm run reset-project
+git clone https://github.com/mazenabid/react-native-vsco.git
+cd react-native-vsco
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Scan the QR code with Expo Go, or press `i`, `a`, or `w` to launch a supported simulator or web browser.
 
-## Learn more
+### Run quality checks
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npm run lint
+npm run typecheck
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## How progress is published
 
-## Join the community
+Each module follows the same traceable workflow:
 
-Join our community of developers creating universal apps.
+```text
+Module issue → short-lived branch → pull request → quality checks
+→ merge to main → tagged release → curriculum update
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+`main` always represents the newest stable learning checkpoint. Module branches are temporary; Git tags and Releases preserve the permanent snapshots.
+
+## Roadmap
+
+The project progresses through four phases:
+
+1. **Foundation** — React Native, design system, navigation, gallery, and architecture
+2. **Editing** — gestures, image processing, adjustments, presets, and history
+3. **Product** — persistence, export, accounts, cloud storage, and community
+4. **Production** — testing, accessibility, performance, security, and release
+
+See [CURRICULUM.md](./CURRICULUM.md) for individual module outcomes and progress.
+
+## Feedback
+
+Thoughtful questions and suggestions are welcome through GitHub Issues. Each issue should focus on a reproducible bug, a curriculum improvement, or a clearly scoped product idea.
+
+## Acknowledgements
+
+VSCO is referenced only as product inspiration for learning about restrained visual design, photo-editing workflows, and creative communities. All implementation, branding, copy, and product decisions in this repository are original to this project.
