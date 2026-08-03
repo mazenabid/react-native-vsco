@@ -11,9 +11,9 @@ A learning-first, VSCO-inspired photo editor and creative community built from t
 
 | Current module | Status | Next outcome |
 | --- | --- | --- |
-| 02 — React Native fundamentals | Complete | Extract the Studio's visual language into a reusable design system |
+| 03 — Design system | In progress | A cohesive token and component system shared by the app shell |
 
-The Expo demo has been replaced with a typed, photography-first Studio experience. Module 03 will turn its successful visual decisions into reusable tokens and components.
+The photography-first Studio now provides the real interface from which Module 03 is extracting reusable tokens, type roles, controls, and navigation theming.
 
 ## Why this project exists
 
@@ -37,6 +37,7 @@ The finished app matters, but so does the path to it. Each curriculum module end
 ## Learning in public
 
 - [View the complete 14-module curriculum](./CURRICULUM.md)
+- [Follow Module 03: Design system](./docs/modules/03-design-system.md)
 - [Follow Module 02: React Native fundamentals](./docs/modules/02-react-native-fundamentals.md)
 - [Read Module 01: Tooling and setup](./docs/modules/01-tooling-and-setup.md)
 - [Review our architecture decisions](./docs/architecture/decisions/0001-expo-typescript-router.md)

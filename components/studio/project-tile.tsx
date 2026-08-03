@@ -2,6 +2,7 @@ import { Image } from 'expo-image';
 import { StyleSheet, View } from 'react-native';
 
 import type { StudioProject } from '@/constants/studio-projects';
+import { colors, motion } from '@/theme/tokens';
 
 type ProjectTileProps = {
   project: StudioProject;
@@ -18,7 +19,7 @@ export function ProjectTile({ project, size }: ProjectTileProps) {
         source={{ uri: project.imageUrl }}
         style={styles.image}
         contentFit="cover"
-        transition={160}
+        transition={motion.imageReveal}
       />
     </View>
   );
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   tile: {
     position: 'relative',
     overflow: 'hidden',
-    backgroundColor: '#1A1A1A',
+    backgroundColor: colors.mediaPlaceholder,
   },
   image: {
     width: '100%',

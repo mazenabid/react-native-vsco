@@ -1,7 +1,10 @@
 import Feather from '@expo/vector-icons/Feather';
 import type { ComponentProps } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { AppText } from '@/components/ui/app-text';
+import { colors, sizes, space } from '@/theme/tokens';
 
 type FeatherName = ComponentProps<typeof Feather>['name'];
 
@@ -22,19 +25,25 @@ const NAVIGATION_ITEMS: readonly BarItem[] = [
 
 export function StudioBottomBar() {
   const insets = useSafeAreaInsets();
-  const bottomPadding = Math.max(insets.bottom, 28);
+  const bottomPadding = Math.max(insets.bottom, sizes.navigationBottomFallback);
 
   return (
     <View
       accessibilityRole="toolbar"
-      style={[styles.bar, { minHeight: 68 + bottomPadding, paddingBottom: bottomPadding }]}>
+      style={[
+        styles.bar,
+        { minHeight: sizes.navigationContentHeight + bottomPadding, paddingBottom: bottomPadding },
+      ]}>
       {NAVIGATION_ITEMS.map((item) => {
-        const color = item.isActive ? '#FFFFFF' : '#7C7C7C';
+        const tone = item.isActive ? 'primary' : 'muted';
+        const color = item.isActive ? colors.contentPrimary : colors.contentMuted;
 
         return (
           <View key={item.label} style={styles.item}>
-            <Feather name={item.icon} size={26} color={color} />
-            <Text style={[styles.label, { color }]}>{item.label}</Text>
+            <Feather name={item.icon} size={sizes.navigationIcon} color={color} />
+            <AppText variant="navigationLabel" tone={tone}>
+              {item.label}
+            </AppText>
           </View>
         );
       })}
@@ -44,21 +53,16 @@ export function StudioBottomBar() {
 
 const styles = StyleSheet.create({
   bar: {
-    paddingTop: 11,
-    paddingHorizontal: 4,
+    paddingTop: space.md,
+    paddingHorizontal: space.xs,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-around',
-    backgroundColor: '#151515',
+    backgroundColor: colors.navigation,
   },
   item: {
     flex: 1,
     alignItems: 'center',
-    gap: 4,
-  },
-  label: {
-    fontSize: 11,
-    fontWeight: '400',
-    lineHeight: 14,
+    gap: space.xs,
   },
 });
