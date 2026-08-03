@@ -1,98 +1,139 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import Feather from '@expo/vector-icons/Feather';
+import { useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { StudioBottomBar } from '@/components/studio/studio-bottom-bar';
+import { ProjectTile } from '@/components/studio/project-tile';
+import { STUDIO_PROJECTS } from '@/constants/studio-projects';
 
-export default function HomeScreen() {
+const MAX_CONTENT_WIDTH = 720;
+const GRID_GAP = 2;
+
+export default function StudioScreen() {
+  const { width } = useWindowDimensions();
+  const [columnCount, setColumnCount] = useState<2 | 3>(3);
+
+  const contentWidth = Math.min(width, MAX_CONTENT_WIDTH);
+  const tileSize = (contentWidth - GRID_GAP * (columnCount - 1)) / columnCount;
+
+  function toggleGridSize() {
+    setColumnCount((currentCount) => (currentCount === 3 ? 2 : 3));
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <SafeAreaView style={styles.safeArea} edges={['top']}>
+      <View style={[styles.appFrame, { maxWidth: MAX_CONTENT_WIDTH }]}>
+        <View style={styles.header}>
+          <View style={styles.utilityRow}>
+            <View style={styles.utilityButton} accessibilityElementsHidden>
+              <Feather name="menu" size={36} color="#FFFFFF" />
+            </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={`Show ${columnCount === 3 ? 'large' : 'small'} grid`}
+              onPress={toggleGridSize}
+              hitSlop={10}
+              style={({ pressed }) => [styles.utilityButton, pressed && styles.pressed]}>
+              <View style={styles.viewControlIcon}>
+                <View style={styles.viewControlDot} />
+              </View>
+            </Pressable>
+          </View>
+
+          <View style={styles.titleRow}>
+            <Text style={styles.title}>Studio</Text>
+          </View>
+        </View>
+
+        <ScrollView
+          style={styles.gallery}
+          contentContainerStyle={styles.galleryContent}
+          showsVerticalScrollIndicator={false}>
+          <View style={styles.grid}>
+            {STUDIO_PROJECTS.map((project) => (
+              <ProjectTile key={project.id} project={project} size={tileSize} />
+            ))}
+          </View>
+        </ScrollView>
+
+        <StudioBottomBar />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  safeArea: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#000000',
+  },
+  appFrame: {
+    width: '100%',
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  header: {
+    paddingTop: 12,
+    paddingBottom: 22,
+  },
+  utilityRow: {
+    height: 48,
+    paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  utilityButton: {
+    width: 44,
+    height: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  viewControlIcon: {
+    width: 24,
+    height: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    borderRadius: 2,
+  },
+  viewControlDot: {
+    width: 6,
+    height: 6,
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+    borderRadius: 3,
+  },
+  titleRow: {
+    marginTop: 34,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: {
+    color: '#FFFFFF',
+    fontSize: 32,
+    fontWeight: '500',
+    letterSpacing: -0.9,
+    lineHeight: 40,
+  },
+  gallery: {
+    flex: 1,
+  },
+  galleryContent: {
+    paddingBottom: GRID_GAP,
+  },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: GRID_GAP,
+  },
+  pressed: {
+    opacity: 0.5,
   },
 });
