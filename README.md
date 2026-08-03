@@ -11,9 +11,9 @@ A learning-first, VSCO-inspired photo editor and creative community built from t
 
 | Current module | Status | Next outcome |
 | --- | --- | --- |
-| 02 — React Native fundamentals | In progress | Review and release the first original Studio screen |
+| 02 — React Native fundamentals | Complete | Extract the Studio's visual language into a reusable design system |
 
-The Expo demo has been replaced with a typed, state-driven Studio experience on the Module 02 branch.
+The Expo demo has been replaced with a typed, photography-first Studio experience. Module 03 will turn its successful visual decisions into reusable tokens and components.
 
 ## Why this project exists
 

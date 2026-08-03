@@ -13,7 +13,7 @@ Each module has three obligations:
 | # | Module | Learning opportunity | Product outcome | Status | Checkpoint |
 | --- | --- | --- | --- | --- | --- |
 | 01 | Tooling and setup | Node LTS, npm, Expo, Metro, project structure, Git, and terminal debugging | A verified React Native app running locally and on a device | Complete | [Journal](./docs/modules/01-tooling-and-setup.md) · [Release](https://github.com/mazenabid/react-native-vsco/releases/tag/module-01-foundation) |
-| 02 | React Native fundamentals | Components, JSX, props, state, hooks, TypeScript, and native primitives | A custom Studio screen replacing the Expo demo | In progress | [Journal](./docs/modules/02-react-native-fundamentals.md) · [Issue #1](https://github.com/mazenabid/react-native-vsco/issues/1) |
+| 02 | React Native fundamentals | Components, JSX, props, state, hooks, TypeScript, and native primitives | A custom Studio screen replacing the Expo demo | Complete | [Journal](./docs/modules/02-react-native-fundamentals.md) · [PR #2](https://github.com/mazenabid/react-native-vsco/pull/2) · [Release](https://github.com/mazenabid/react-native-vsco/releases/tag/module-02-react-native-fundamentals) |
 | 03 | Design system | Color, typography, spacing, themes, composition, and reusable UI APIs | A cohesive visual system shared across the app | Planned | — |
 | 04 | Navigation and app shell | Expo Router, tabs, stacks, modals, route parameters, and safe areas | Studio, Discover, Create, and Profile navigation | Planned | — |
 | 05 | Photo permissions and gallery | Device permissions, Media Library APIs, asynchronous work, and performant lists | A responsive grid of photos from the user's device | Planned | — |

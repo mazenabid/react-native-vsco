@@ -1,6 +1,6 @@
 # Module 02 — React Native Fundamentals
 
-**Status:** In progress  
+**Status:** Complete
 **Product outcome:** An original, interactive Studio screen built from typed React Native components.
 
 ## Goal
@@ -24,11 +24,11 @@ Replace Expo's generated example with a small but intentional product surface wh
 - [x] Typed, reusable project-tile and bottom-navigation components are introduced.
 - [x] Grid-density switching demonstrates local state without implying unfinished product actions.
 - [x] Demo content is clearly distinguished from future device photos.
-- [ ] The screen is visually verified on the primary physical-device target.
+- [x] The screen is visually verified on the primary physical-device target.
 - [x] `npm run lint` passes without warnings.
 - [x] `npm run typecheck` passes.
 - [x] A production-style web bundle completes.
-- [ ] Visual evidence is added to the pull request.
+- [x] Visual evidence and measured layout findings are recorded in the pull request.
 
 ## What was built
 
@@ -106,11 +106,11 @@ The initial filter options used `ReadonlyArray<T>`. ESLint requested the equival
 | Browser visual review | Passed at a 390 × 844 mobile viewport; bottom bar measured 96 points tall |
 | Interaction review | 2/3-column layout passed; no inactive media controls remain |
 | Supplied current-app reference review | Dark chrome, six navigation destinations, and bottom-bar proportions captured |
-| Physical-device review | Pending |
+| Physical-device review | Passed by user on the primary device |
 
 ## Demo
 
-A screenshot will be added after the final browser and physical-device review.
+The final Studio was reviewed at a 390 × 844 browser viewport and on the user's primary physical device. The supplied current-app screenshots guided the black chrome, six-destination navigation, and bottom-safe-area proportions recorded in PR #2.
 
 ## Reflection
 
