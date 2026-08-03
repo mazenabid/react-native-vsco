@@ -1,6 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Pressable, StyleSheet, Text } from 'react-native';
 
-export type StudioFilter = 'all' | 'edited';
+export type StudioFilter = 'all' | 'edited' | 'unedited';
 
 type StudioFilterTabsProps = {
   value: StudioFilter;
@@ -8,13 +8,18 @@ type StudioFilterTabsProps = {
 };
 
 const FILTERS: readonly { label: string; value: StudioFilter }[] = [
-  { label: 'All studies', value: 'all' },
+  { label: 'All', value: 'all' },
   { label: 'Edited', value: 'edited' },
+  { label: 'Unedited', value: 'unedited' },
 ];
 
 export function StudioFilterTabs({ value, onChange }: StudioFilterTabsProps) {
   return (
-    <View accessibilityRole="tablist" style={styles.container}>
+    <ScrollView
+      horizontal
+      accessibilityRole="tablist"
+      contentContainerStyle={styles.container}
+      showsHorizontalScrollIndicator={false}>
       {FILTERS.map((filter) => {
         const isSelected = filter.value === value;
 
@@ -25,47 +30,47 @@ export function StudioFilterTabs({ value, onChange }: StudioFilterTabsProps) {
             accessibilityState={{ selected: isSelected }}
             onPress={() => onChange(filter.value)}
             style={({ pressed }) => [
-              styles.tab,
-              isSelected && styles.selectedTab,
+              styles.filter,
+              isSelected && styles.selectedFilter,
               pressed && styles.pressed,
             ]}>
             <Text style={[styles.label, isSelected && styles.selectedLabel]}>{filter.label}</Text>
           </Pressable>
         );
       })}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 28,
-    padding: 4,
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    gap: 4,
-    borderRadius: 3,
-    backgroundColor: '#E4E0D6',
+    paddingTop: 18,
+    paddingHorizontal: 20,
+    gap: 10,
   },
-  tab: {
-    minHeight: 38,
+  filter: {
+    minHeight: 42,
+    minWidth: 78,
     paddingHorizontal: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 2,
+    borderWidth: 1.5,
+    borderColor: '#111111',
+    borderRadius: 22,
+    backgroundColor: '#FFFFFF',
   },
-  selectedTab: {
-    backgroundColor: '#171714',
+  selectedFilter: {
+    backgroundColor: '#111111',
   },
   label: {
-    color: '#726E65',
-    fontSize: 11,
-    fontWeight: '600',
+    color: '#111111',
+    fontSize: 14,
+    fontWeight: '500',
   },
   selectedLabel: {
-    color: '#F3F1EC',
+    color: '#FFFFFF',
   },
   pressed: {
-    opacity: 0.68,
+    opacity: 0.5,
   },
 });

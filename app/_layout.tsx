@@ -7,11 +7,11 @@ const studioTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: '#F3F1EC',
-    card: '#F3F1EC',
-    text: '#171714',
-    border: '#C9C5BC',
-    primary: '#171714',
+    background: '#FFFFFF',
+    card: '#FFFFFF',
+    text: '#111111',
+    border: '#DDDDDD',
+    primary: '#111111',
   },
 };
 

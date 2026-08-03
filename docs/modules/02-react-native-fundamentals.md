@@ -36,7 +36,7 @@ Replace Expo's generated example with a small but intentional product surface wh
 
 ### Studio screen
 
-The screen combines a restrained editorial header, progress summary, filter control, responsive grid, and selection feedback. It is intentionally useful as a learning surface without implementing device media permissions before their dedicated module.
+The revised screen follows the functional hierarchy of a real photo workspace: a compact Studio title, outlined media filters, a dense edge-to-edge photo grid, selection feedback, and quiet bottom navigation. The interface intentionally yields attention to photography instead of decorating the workspace with marketing copy.
 
 ### Controlled filter component
 
@@ -44,17 +44,23 @@ The screen combines a restrained editorial header, progress summary, filter cont
 
 ### Typed project tile
 
-`ProjectTile` receives a `StudioProject`, its calculated size, selection state, and a callback. The abstract artwork is produced entirely with native views so the module can focus on components and layout without introducing remote images or image-processing libraries.
+`ProjectTile` receives a `StudioProject`, its calculated size, selection state, and a callback. Demo photographs are rendered with `expo-image`; selection adds an inset border and changes the surrounding interface from navigation to contextual actions.
 
 ### Data-driven rendering
 
-Six demo studies are stored as typed data. The screen maps that data into project tiles and derives the edited subset from the selected filter.
+Fifteen demo studies are stored as typed data. The screen maps that data into project tiles and derives edited and unedited subsets from the selected filter. A grid-density control switches between two and three columns without duplicating project data.
 
 ## Decisions
 
 ### Use explicit demo studies instead of requesting photos early
 
 Photo permission and Media Library behavior deserve a focused lesson in Module 05. Using clearly labeled demo studies prevents permission handling from obscuring React fundamentals or creating a misleading fake import flow.
+
+### Let photography carry the visual identity
+
+The first direction used a large editorial headline, warm decorative surfaces, counters, captions, and abstract generated-looking cards. Although internally consistent, it competed with the media and read like a generic concept mockup.
+
+Current VSCO references show a much stricter hierarchy: white and black interface chrome, large but direct screen naming, compact outlined filters, dense photography, and contextual actions only after selection. The revision adopts those principles without copying VSCO branding or proprietary icons.
 
 ### Keep visual values local until Module 03
 
@@ -65,6 +71,12 @@ The first screen needs an intentional visual direction, but formal color, typogr
 The Studio screen owns the filter and selected project because multiple child components depend on those values. Child components receive the minimum props needed to render and notify the parent of interactions.
 
 ## Problems encountered
+
+### The first visual direction looked designed by a template rather than a photographer
+
+The initial implementation tried to manufacture personality through copy and decorative composition. That was the wrong source of identity for a photo product. The user's direct feedback exposed the mismatch before it hardened into the design system.
+
+**Lesson:** A coherent interface can still be contextually wrong. Reference the actual product category, identify what receives visual priority, render the work, and be willing to discard a polished direction when its hierarchy is incorrect.
 
 ### An array type violated the repository lint convention
 
@@ -79,7 +91,8 @@ The initial filter options used `ReadonlyArray<T>`. ESLint requested the equival
 | Lint | Passed without warnings |
 | TypeScript | Passed |
 | Production web bundle | Passed; four static routes exported |
-| Browser visual review | Pending |
+| Browser visual review | Passed at a 390 × 844 mobile viewport |
+| Interaction review | Filters, 2/3-column layout, selection, and deselection passed |
 | Physical-device review | Pending |
 
 ## Demo
@@ -88,8 +101,15 @@ A screenshot will be added after the final browser and physical-device review.
 
 ## Reflection
 
-This module demonstrates React's central loop: data and state flow down into components, user events flow back up through callbacks, and React renders the next interface. The screen is visually richer than the underlying concepts, but the implementation remains deliberately small.
+This module demonstrates React's central loop: data and state flow down into components, user events flow back up through callbacks, and React renders the next interface. It also captures a more important product lesson: visual restraint is not the absence of design. In a photography workspace, restraint is what lets the work become the interface.
 
 ## Next step
 
 Module 03 will extract the successful visual decisions into named design tokens and reusable primitives rather than allowing raw values to spread through the application.
+
+## References
+
+- [Current VSCO Studio behavior](https://support.vsco.co/en/articles/12698393-how-to-use-vsco)
+- [Current VSCO Studio sorting, filters, and grid options](https://support.vsco.co/en/articles/12698511-studio-sorting-and-filter-feature-ios-only)
+- [Current VSCO navigation and editing walkthrough](https://www.vsco.co/learn/getting-started-vsco)
+- [Unsplash demo photography](https://unsplash.com/)
